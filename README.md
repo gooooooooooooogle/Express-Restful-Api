@@ -42,3 +42,8 @@ Express-Restful-Api
     # docker run -p 3003:3003 -p 1433:1433 -d express-restful-api
 
 * **6.浏览器访问：localhost:3003**
+
+```
+  # docker run -p 3003:3003 -p 1433:1433 -d express-restful-api
+  
+```
