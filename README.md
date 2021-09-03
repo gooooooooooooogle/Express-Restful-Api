@@ -21,7 +21,7 @@ Express-Restful-Api
     # RUN npm install --registry=https://registry.npm.taobao.org
     # COPY . .
     # EXPOSE 3003 1433
-    # CMD ["npm", "run", "test"]  
+    # CMD ["npm", "run", "dev"]  
 ```
 * **2.增加.dockerignore文件**
     ##### .dockerignore
@@ -35,12 +35,12 @@ Express-Restful-Api
     ##### 执行命令
 ```
     # cd ./express-restful-api
-    # docker build -t express-restful-api .
+    # docker build -t express-restful-api:1.0 .
 ```
 * **5.运行容器部署**
     ##### 执行命令
 ```
-    # docker run -p 3003:3003 -p 1433:1433 -d express-restful-api
+    # docker run -p 3003:3003 -p 1433:1433 -d --name express-restful-api express-restful-api:1.0
 ```
 * **6.浏览器访问：localhost:3003**
 
