@@ -3,8 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "nodemon app.js",
-    "test": "node app.js"
+    "start": "pm2 start app.js",
+    "stop": "pm2 stop app.js",
+    "test": "nodemon app.js",
+    "dev": "node app.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
