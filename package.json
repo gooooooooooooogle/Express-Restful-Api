@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "pm2 start app.js",
+    "start": "pm2 start app.js --no-daemon",
     "stop": "pm2 stop app.js",
     "test": "nodemon app.js",
     "dev": "node app.js"
