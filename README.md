@@ -50,7 +50,7 @@ Express-Restful-Api
 
 参考链接：[把一个 Node.js web 应用程序给 Docker 化](https://nodejs.org/zh-cn/docs/guides/nodejs-docker-webapp/)
 
-# 通过git clone 方式进行镜像构建(构建镜像慢，启动快)
+# 通过git clone 方式构建镜像(构建镜像慢，容器启动快)
     ##### Dockerfile
 ```
     # 指定基础镜像
@@ -78,7 +78,7 @@ Express-Restful-Api
     CMD ["npm", "run", "start"]
 ```
 
-# 通过脚本方式进行镜像构建(构建镜像快，启动慢)
+# 通过脚本方式构建镜像(构建镜像快，容器启动慢)
     ##### Dockerfile
 ```
    
