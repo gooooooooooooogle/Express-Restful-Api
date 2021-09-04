@@ -51,7 +51,7 @@ Express-Restful-Api
 参考链接：[把一个 Node.js web 应用程序给 Docker 化](https://nodejs.org/zh-cn/docs/guides/nodejs-docker-webapp/)
 
 # 通过git clone 方式构建镜像(构建镜像慢，容器启动快)
-    ##### Dockerfile
+   ##### Dockerfile
 ```
     # 指定基础镜像
     FROM lrcdocker/node14-pm2-git
@@ -79,7 +79,20 @@ Express-Restful-Api
 ```
 
 # 通过脚本方式构建镜像(构建镜像快，容器启动慢)
-    ##### Dockerfile
+   ##### Dockerfile
 ```
-   
+    # 指定基础镜像
+    FROM node:latest
+
+    # 指定维护者信息
+    MAINTAINER LRC
+
+    # 拷贝初始化文件到容器中
+    COPY ./init.sh /init.sh
+
+    # 增加可执行权限
+    RUN chmod +x /init.sh
+
+    # 当容器启动时部署项目
+    CMD /init.sh
 ```
