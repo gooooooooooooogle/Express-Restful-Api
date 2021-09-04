@@ -1,0 +1,23 @@
+# 指定基础镜像
+FROM lrcdocker/node14-pm2-git
+
+# 指定维护者信息
+MAINTAINER LRC
+
+# 切换工作目录
+WORKDIR /usr/src/app
+
+# 下载项目
+RUN git clone https://github.com.cnpmjs.org/gooooooooooooogle/Express-Restful-Api.git
+
+# 切换到项目根目录
+WORKDIR /usr/src/app/Express-Restful-Api
+
+# 下载依赖包
+RUN npm install --registry=https://registry.npm.taobao.org
+
+# 暴露端口
+EXPOSE 3003 1433
+
+# 当容器启动部署项目
+CMD ["npm", "run", "start"]

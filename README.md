@@ -28,6 +28,9 @@ Express-Restful-Api
 ```
     # node_modules
     # npm-debug.log
+    # .git
+    # .gitignore
+    # README.md
 ```
 * **3.将整个项目源文件（除node_modules）上传至Ubuntu的express-restful-api目录**
 
@@ -46,3 +49,37 @@ Express-Restful-Api
 
 
 参考链接：[把一个 Node.js web 应用程序给 Docker 化](https://nodejs.org/zh-cn/docs/guides/nodejs-docker-webapp/)
+
+# 通过git clone 方式进行镜像构建(构建镜像慢，启动快)
+    ##### Dockerfile
+```
+    # 指定基础镜像
+    FROM lrcdocker/node14-pm2-git
+
+    # 指定维护者信息
+    MAINTAINER LRC
+
+    # 切换工作目录
+    WORKDIR /usr/src/app
+
+    # 下载项目
+    RUN git clone https://github.com.cnpmjs.org/gooooooooooooogle/Express-Restful-Api.git
+
+    # 切换到项目根目录
+    WORKDIR /usr/src/app/Express-Restful-Api
+
+    # 下载依赖包
+    RUN npm install --registry=https://registry.npm.taobao.org
+
+    # 暴露端口
+    EXPOSE 3003 1433
+
+    # 当容器启动部署项目
+    CMD ["npm", "run", "start"]
+```
+
+# 通过脚本方式进行镜像构建(构建镜像快，启动慢)
+    ##### Dockerfile
+```
+   
+```
