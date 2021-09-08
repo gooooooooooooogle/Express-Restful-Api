@@ -15,35 +15,35 @@ Express-Restful-Api
 * **1.制作Dockerfile**
     ##### Dockerfile
 ```
-    # FROM lrcdocker/node14-pm2
-    # WORKDIR /usr/src/app
-    # COPY package*.json ./
-    # RUN npm install --registry=https://registry.npm.taobao.org
-    # COPY . .
-    # EXPOSE 3003 1433
-    # CMD ["npm", "run", "start"] 
+    FROM lrcdocker/node14-pm2
+    WORKDIR /usr/src/app
+    COPY package*.json ./
+    RUN npm install --registry=https://registry.npm.taobao.org
+    COPY . .
+    EXPOSE 3003 1433
+    CMD ["npm", "run", "start"] 
 ```
 * **2.增加.dockerignore文件**
     ##### .dockerignore
 ```
-    # node_modules
-    # npm-debug.log
-    # .git
-    # .gitignore
-    # README.md
+    node_modules
+    npm-debug.log
+    .git
+    .gitignore
+    README.md
 ```
 * **3.将整个项目源文件（除node_modules）上传至Ubuntu的express-restful-api目录**
 
 * **4.制作image镜像**
     ##### 执行命令
 ```
-    # cd ./express-restful-api
-    # docker build -t express-restful-api:1.0 .
+    cd ./express-restful-api
+    docker build -t express-restful-api:1.0 .
 ```
 * **5.运行容器部署**
     ##### 执行命令
 ```
-    # docker run -p 3003:3003 -p 1433:1433 -d --name express-restful-api express-restful-api:1.0
+    docker run -p 3003:3003 -p 1433:1433 -d --name express-restful-api express-restful-api:1.0
 ```
 * **6.浏览器访问：localhost:3003**
 
@@ -82,17 +82,24 @@ Express-Restful-Api
    ##### Dockerfile
 ```
     # 指定基础镜像
-    FROM node:latest
+    FROM lrcdocker/node14-pm2-git
 
     # 指定维护者信息
     MAINTAINER LRC
 
     # 拷贝初始化文件到容器中
-    COPY ./init.sh /init.sh
+    COPY ./initialize.sh /initialize.sh
 
     # 增加可执行权限
-    RUN chmod +x /init.sh
+    RUN chmod +x /initialize.sh
+
+    # 暴露端口
+    EXPOSE 3003 1433
+
+    RUN sed -i 's/\r$//' $app/initialize.sh  && \  
+            chmod +x $app/initialize.sh
 
     # 当容器启动时部署项目
-    CMD /init.sh
+    ENTRYPOINT $app/initialize.sh
+
 ```
