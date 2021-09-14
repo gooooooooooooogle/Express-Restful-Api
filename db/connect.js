@@ -3,10 +3,12 @@ const config = require('./config')
 
 module.exports = {
     executeSQL: function (sqlStr, cb) {
+
         mssql.connect(config, err => {
             if (err) {
                 cb(err, null)
             }
+            console.log(sqlStr)
             new mssql.Request().query(sqlStr, (err, result) => {
                 if (err) return cb(err, null)
 
