@@ -3,8 +3,8 @@ const createError = require('http-errors');
 module.exports = (app) => {
   
   app.use('/', require('./pages'))
-  app.use('/person', require('./person'))
-  
+  // app.use('/person', require('./person'))
+  app.use('/sys_users', require('./sys_users'))
 
   app.use(function (req, res, next) {
     next(createError(404));

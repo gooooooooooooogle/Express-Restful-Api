@@ -1,8 +1,8 @@
 module.exports = {
   user: 'sa',
-  password: 'Ngkybsql9123',
-  server: '192.168.0.8',
-  database: 'WXSBJC_DB',
+  password: '1',
+  server: '127.0.0.1',
+  database: 'admin_system_db',
   prot: 1433,
   pool: {
     max: 10,
